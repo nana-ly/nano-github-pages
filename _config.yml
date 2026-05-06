@@ -1,6 +1,23 @@
-remote_theme: "johnotander/pixyll"
+# 使用 remote_theme 代替 theme
+remote_theme: zivhub/monophase
+
+# 确保以下插件被启用
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# Monophase 主题的通用配置建议
 title: nanolog
-description: TRY!
+description: justtry
 author: nana-ly
+avatar: /assets/avatar.png   # 可选，显示头像，需要把图片放在 assets 文件夹下
 
+# 分页设置（Monophase 支持分页）
+paginate: 5
+paginate_path: "/page:num/"
 
+# 侧边栏社交链接配置示例
+social:
+  github: nana-ly
+  # twitter: your_username
