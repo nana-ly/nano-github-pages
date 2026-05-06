@@ -2,3 +2,5 @@ theme: minima
 title: nana-ly's personal blog
 description: TRY!
 author: nana-ly
+
+remote_theme: "johnotander/pixyll"
