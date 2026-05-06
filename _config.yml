@@ -1,6 +1,6 @@
-theme: minima
-title: nana-ly's personal blog
+remote_theme: "johnotander/pixyll"
+title: nanolog
 description: TRY!
 author: nana-ly
 
-remote_theme: "johnotander/pixyll"
+
