@@ -2,7 +2,7 @@
 title: Welcome to my blog!!!
 ---
 
-## 📚 学习笔记
+## Notes  学习笔记
 
 - [Claude Code 使用指南](./cc使用教程)
 
