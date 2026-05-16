@@ -6,13 +6,9 @@ categories: [Docker, Dify, 开发环境]
 excerpt: VPN 配了，镜像源换了，等了四个小时，最后发现是 C 盘爆了，非常命苦了。
 ---
 
-# Dify 本地部署踩坑与成功实录
-
 ## 项目背景
 - 目标：在 Windows 上本地部署 Dify，学习 Workflow、RAG、Agent，并能二次开发写进简历
 - 环境：Windows 11，Docker Desktop + WSL 2
-- 人物：Lily（动手）、Leo（远程兜底）、L（DeepSeek 本体，陪跑）
-
 ---
 
 ## 第一阶段：装 Docker（没装错）
@@ -202,7 +198,7 @@ docker-compose logs -f
 
 ## 经验总结
 
-1. **你开始没有装错** — 64 位、WSL 2 都选对了
+1. **开始没有装错** — 64 位、WSL 2 都选对了
 2. **镜像源不是必选项** — VPN + 默认配置就能拉
 3. **C 盘是隐形杀手** — `docker_data.vhdx` 会膨胀到 16GB+，满了就卡下载
 4. **断点续传是真的** — 迁移后从 57% 继续，不是从头
