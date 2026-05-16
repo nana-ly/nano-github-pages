@@ -1,0 +1,232 @@
+---
+layout: post
+title: "Dify 本地部署记"
+date: 2026-05-16
+categories: [Docker, Dify, 开发环境]
+excerpt: VPN 配了，镜像源换了，等了四个小时，最后发现是 C 盘爆了，非常命苦了。
+---
+
+# Dify 本地部署踩坑与成功实录
+
+## 项目背景
+- 目标：在 Windows 上本地部署 Dify，学习 Workflow、RAG、Agent，并能二次开发写进简历
+- 环境：Windows 11，Docker Desktop + WSL 2
+- 人物：Lily（动手）、Leo（远程兜底）、L（DeepSeek 本体，陪跑）
+
+---
+
+## 第一阶段：装 Docker（没装错）
+
+### 1.1 下载 Docker Desktop
+- 选了 **64 位版本** ✅（不是 ARM64）
+- 安装时勾选了 **Use WSL 2** ✅
+
+### 1.2 验证安装
+```cmd
+docker --version
+# Docker version 29.4.3, build 055a478
+```
+
+### 1.3 安装 WSL 2
+```cmd
+wsl --install
+```
+
+**踩坑**：
+- 弹窗提示 WSL 内核需要更新 → 手动下载 `wsl_update_x64.msi` 安装 ✅
+- 注意是 x64 不是 ARM64
+
+**成功标志**：
+```cmd
+wsl --list -v
+#  NAME      STATE           VERSION
+#  Ubuntu    Running         2
+```
+
+---
+
+## 第二阶段：准备 Dify 代码
+
+### 2.1 Clone 项目
+```cmd
+cd D:\
+git clone https://github.com/nana-ly/dify.git
+```
+
+**踩坑**：
+- 第一次 clone 失败（网络问题）→ 多试几次，第三次成功了
+- 目录嵌套（`D:\dify\dify`）→ 用 `move` 把文件移到上层，再删空目录
+
+**最终目录结构**：
+```
+D:\dify\
+├── api\
+├── docker\
+├── web\
+└── ...
+```
+
+---
+
+## 第三阶段：拉取镜像（最折磨的一关）
+
+### 3.1 第一次尝试：配镜像源
+配置了阿里云、中科大、网易等多个镜像源，`docker pull hello-world` 仍然卡住。（可能是电脑当时换来换去卡住了吧所以才这样）
+
+### 3.2 第二次尝试：清空配置 + VPN
+- 把 `daemon.json` 清空为 `{}`
+- 打开 VPN（稳定节点）
+- Docker 直接走国际网络，`hello-world` 立刻拉下来了 ✅
+
+**结论**：**不需要折腾镜像源，VPN + 默认配置就够。**
+
+### 3.3 开始拉 Dify 镜像
+```cmd
+cd D:\dify\docker
+docker-compose up -d
+```
+
+**现象**：
+- 前 8 个小镜像很快拉完 ✅
+- 最大的 `dify-api`（941MB）开始下载
+- 下载到 57% 后**卡住不动了**
+
+**错误表现**：
+- 不报错，也没有进度
+- 偶尔报 `EOF` 或 `connection reset`
+- 等了 4.6 小时，进度还是 57%
+
+### 3.4 真正的原因：C 盘爆了
+排查发现：
+- `C:\Users\ASUS\AppData\Local\Docker\wsl\disk\docker_data.vhdx` 占用 **16GB**
+- C 盘只剩 15GB
+- Docker 不是网络问题，而是**硬盘满了无法继续写入**，但表现却是下载卡住
+
+**关键教训**：Docker 下载卡住不一定是网络问题，先查 C 盘空间。
+
+### 3.5 迁移 Docker 数据到 D 盘
+**步骤**：
+```cmd
+# 1. 彻底关闭 Docker 和 WSL
+taskkill /f /im "Docker Desktop.exe"
+wsl --shutdown
+
+# 2. 创建 D 盘目录
+mkdir D:\docker-data\disk
+
+# 3. 移动 16GB 的文件
+move "C:\Users\ASUS\AppData\Local\Docker\wsl\disk\docker_data.vhdx" "D:\docker-data\disk\"
+
+# 4. 创建软链接（让 Docker 以为文件还在 C 盘）
+# 以管理员身份运行 CMD
+mklink "C:\Users\ASUS\AppData\Local\Docker\wsl\disk\docker_data.vhdx" "D:\docker-data\disk\docker_data.vhdx"
+```
+
+**结果**：
+- C 盘释放了 16GB
+- Docker 自动从断点继续下载（从 57% 开始）
+
+### 3.6 最终拉取成功
+```cmd
+docker-compose up -d
+```
+
+输出：
+```
+✔ Image langgenius/dify-api:1.14.1 Pulled
+✔ Container docker-api-1 Started
+✔ Container docker-web-1 Started
+...
+```
+
+**共 16 个容器全部启动** ✅
+
+---
+
+## 第四阶段：访问 Dify
+
+### 4.1 端口问题
+第一次访问 `http://localhost:3000` 打不开。
+
+**原因**：`.env` 文件中缺少 `EXPOSE_WEB_PORT`。
+
+**解决**：
+```cmd
+cd D:\dify\docker
+notepad .env
+# 添加一行：EXPOSE_WEB_PORT=3000
+docker-compose down
+docker-compose up -d
+```
+
+### 4.2 正确访问地址
+```cmd
+docker ps | findstr nginx
+# 0.0.0.0:80->80/tcp
+```
+
+浏览器打开：**`http://localhost`**（不是 3000，Nginx 暴露了 80 端口）
+
+### 4.3 注册登录
+- 看到 Dify 注册页面
+- 注册第一个账号（管理员）
+- 进入工作台 ✅
+
+---
+
+## 第五阶段：日常使用
+
+### 启动 Dify
+```cmd
+cd D:\dify\docker
+docker-compose up -d
+```
+
+### 停止 Dify
+```cmd
+cd D:\dify\docker
+docker-compose down
+```
+
+### 查看状态
+```cmd
+docker ps
+```
+
+### 查看日志
+```cmd
+docker-compose logs -f
+```
+
+---
+
+## 经验总结
+
+1. **你开始没有装错** — 64 位、WSL 2 都选对了
+2. **镜像源不是必选项** — VPN + 默认配置就能拉
+3. **C 盘是隐形杀手** — `docker_data.vhdx` 会膨胀到 16GB+，满了就卡下载
+4. **断点续传是真的** — 迁移后从 57% 继续，不是从头
+5. **VPN 只在拉镜像时需要** — 运行 Dify 不需要
+6. **Docker 卡住先查 C 盘** — 比折腾网络配置更有效
+7. **端口映射看 Nginx** — 默认是 80 端口，不是 3000
+
+---
+
+## 踩坑时间线
+
+| 阶段 | 问题 | 解决 | 耗时 |
+|------|------|------|------|
+| 装 Docker | 弹窗要更新 WSL | 下载 `wsl_update_x64.msi` | 5 分钟 |
+| 拉镜像 | 配各种源都卡 | 清空配置 + VPN | 1 小时 |
+| 拉镜像 | 57% 卡住 今天4.6 小时 | 发现 C 盘爆了，迁移到 D 盘 | 10 分钟 |
+| 访问 | localhost:3000 打不开 | 加 `EXPOSE_WEB_PORT`，用 80 端口 | 2 分钟 |
+
+**实际有效时间**：不到 2 小时  
+**被误导的时间**：很多很多很多小时（等下载 + 折腾镜像源）
+
+---
+
+
+---
+
+你可以把这个保存为 `Dify-部署记录-真实完整版.md`。需要我帮你再补充什么细节吗？
