@@ -6,24 +6,18 @@ title: nanolog
 
 > 由 Obsidian 笔记库整理而来，按分类浏览：
 
-## 笔记 (18)
+## 笔记 (12)
 
-- [live2d]({% post_url 2026-07-28-live2d %})
 - [docker无法启动时]({% post_url 2026-06-22-docker无法启动时 %})
 - [JavaScript]({% post_url 2026-05-07-JavaScript %})
 - [前端css]({% post_url 2026-05-06-前端css %})
 - [未命名]({% post_url 2026-04-24-未命名 %})
-- [未命名 2]({% post_url 2026-04-23-未命名-2 %})
-- [reasonllm]({% post_url 2026-03-31-reasonllm %})
 - [ps学习]({% post_url 2026-03-16-ps学习 %})
-- [未命名 1]({% post_url 2026-03-16-未命名-1 %})
 - [系统开发]({% post_url 2026-01-17-系统开发 %})
-- [虚拟机报错]({% post_url 2025-11-22-虚拟机报错 %})
 - [android studio]({% post_url 2025-10-25-android-studio %})
 - [java]({% post_url 2025-09-13-java %})
 - [渗透测试]({% post_url 2025-08-01-渗透测试 %})
 - [DVWA]({% post_url 2025-07-08-DVWA %})
-- [密码学]({% post_url 2025-06-06-密码学 %})
 - [CSS]({% post_url 2025-05-13-CSS %})
 - [Axure]({% post_url 2025-04-13-Axure %})
 
@@ -36,7 +30,7 @@ title: nanolog
 - [产品]({% post_url 2025-04-13-产品 %})
 - [路线方向参考]({% post_url 2025-03-10-路线方向参考 %})
 
-## 工具 (8)
+## 工具 (6)
 
 - [Stegsolve]({% post_url 2025-08-02-Stegsolve %})
 - [常用快捷键]({% post_url 2024-12-05-常用快捷键 %})
@@ -44,8 +38,6 @@ title: nanolog
 - [某cry和re]({% post_url 2024-11-01-某cry和re %})
 - [DOXbox debug]({% post_url 2024-10-15-DOXbox-debug %})
 - [Burpsuite]({% post_url 2024-09-24-Burpsuite %})
-- [hackbar license]({% post_url 2024-09-22-hackbar-license %})
-- [零碎]({% post_url 2024-09-22-零碎 %})
 
 ## web (32)
 
@@ -97,13 +89,12 @@ title: nanolog
 - [Misc（游戏题）]({% post_url 2024-09-21-Misc-游戏题 %})
 - [持续ing]({% post_url 2024-08-20-持续ing %})
 
-## 基础 (3)
+## 基础 (2)
 
-- [学学基础]({% post_url 2024-09-22-学学基础 %})
 - [一些函数理解]({% post_url 2024-08-20-一些函数理解 %})
 - [knowalittle]({% post_url 2024-07-18-knowalittle %})
 
-## ctf (11)
+## ctf (10)
 
 - [hubuCTF 题目存档]({% post_url 2024-12-17-hubuCTF-题目存档 %})
 - [山河SHCTF（restu]({% post_url 2024-12-17-山河SHCTF-restu %})
@@ -115,7 +106,6 @@ title: nanolog
 - [华科的ctf]({% post_url 2024-11-23-华科的ctf %})
 - [BuildCTF]({% post_url 2024-11-18-BuildCTF %})
 - [NSSCTF（sql]({% post_url 2024-09-25-NSSCTF-sql %})
-- [浅记一下]({% post_url 2024-08-14-浅记一下 %})
 
 ## crypto (4)
 
@@ -124,11 +114,10 @@ title: nanolog
 - [crypto]({% post_url 2024-12-16-crypto %})
 - [cry]({% post_url 2024-11-01-cry %})
 
-## ai (4)
+## ai (3)
 
 - [agent学习]({% post_url 2026-05-05-agent学习 %})
 - [小玩意想法]({% post_url 2026-05-03-小玩意想法 %})
-- [jl及学习]({% post_url 2026-04-24-jl及学习 %})
 - [大模型LLM]({% post_url 2026-03-30-大模型LLM %})
 
 ## reverse (3)
