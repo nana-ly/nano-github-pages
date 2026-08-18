@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-gem "github-pages", group: :jekyll_plugins
-gem "webrick"  # 这是Ruby 3.x环境需要的一个补丁，防止本地调试报错
+gem "jekyll-theme-chirpy", "~> 7.6"
 
-group :jekyll_plugins do
-  gem "jekyll-feed"
-  gem "jekyll-remote-theme"  # 关键！用于加载第三方主题
-  gem "jekyll-seo-tag"
+gem "html-proofer", "~> 5.0", group: :test
+
+platforms :windows, :jruby do
+  gem "tzinfo", ">= 1", "< 3"
+  gem "tzinfo-data"
 end
+
+gem "wdm", "~> 0.2.0", :platforms => [:windows]

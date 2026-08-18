@@ -1,12 +1,14 @@
 ---
-title: nanolog
+# the default layout is 'page'
+icon: fas fa-book
+order: 1
 ---
 
 # 学习笔记与踩坑记录
 
 > 由 Obsidian 笔记库整理而来，按分类浏览：
 
-## 笔记 (12)
+## 📝 笔记 (12)
 
 - [docker无法启动时]({% post_url 2026-06-22-docker无法启动时 %})
 - [JavaScript]({% post_url 2026-05-07-JavaScript %})
@@ -21,16 +23,16 @@ title: nanolog
 - [CSS]({% post_url 2025-05-13-CSS %})
 - [Axure]({% post_url 2025-04-13-Axure %})
 
-## 其他 (1)
+## ✨ 其他 (1)
 
-- ["Welcome to my blog"]({% post_url 2026-05-06-welcome %})
+- [Welcome to my blog]({% post_url 2026-05-06-welcome %})
 
-## 产品 (2)
+## 📦 产品 (2)
 
 - [产品]({% post_url 2025-04-13-产品 %})
 - [路线方向参考]({% post_url 2025-03-10-路线方向参考 %})
 
-## 工具 (6)
+## 🛠️ 工具 (6)
 
 - [Stegsolve]({% post_url 2025-08-02-Stegsolve %})
 - [常用快捷键]({% post_url 2024-12-05-常用快捷键 %})
@@ -39,7 +41,7 @@ title: nanolog
 - [DOXbox debug]({% post_url 2024-10-15-DOXbox-debug %})
 - [Burpsuite]({% post_url 2024-09-24-Burpsuite %})
 
-## web (32)
+## 🌐 web (32)
 
 - [md5绕过]({% post_url 2025-08-01-md5绕过 %})
 - [序列化和反序列化]({% post_url 2025-08-01-序列化和反序列化 %})
@@ -74,12 +76,12 @@ title: nanolog
 - [MySql注入]({% post_url 2024-09-16-MySql注入 %})
 - [密码口令（登录题）]({% post_url 2024-09-16-密码口令-登录题 %})
 
-## pwn (2)
+## 💥 pwn (2)
 
 - [pwn（hubu]({% post_url 2024-12-17-pwn-hubu %})
 - [pwn]({% post_url 2024-11-30-pwn %})
 
-## misc (7)
+## 🧩 misc (7)
 
 - [basectf (misc]({% post_url 2024-12-19-basectf-misc %})
 - [新手上路（攻防世界）]({% post_url 2024-12-16-新手上路-攻防世界 %})
@@ -89,12 +91,12 @@ title: nanolog
 - [Misc（游戏题）]({% post_url 2024-09-21-Misc-游戏题 %})
 - [持续ing]({% post_url 2024-08-20-持续ing %})
 
-## 基础 (2)
+## 🌱 knowlittle (2)
 
 - [一些函数理解]({% post_url 2024-08-20-一些函数理解 %})
 - [knowalittle]({% post_url 2024-07-18-knowalittle %})
 
-## ctf (10)
+## 🏴 ctf赛集 (10)
 
 - [hubuCTF 题目存档]({% post_url 2024-12-17-hubuCTF-题目存档 %})
 - [山河SHCTF（restu]({% post_url 2024-12-17-山河SHCTF-restu %})
@@ -107,30 +109,30 @@ title: nanolog
 - [BuildCTF]({% post_url 2024-11-18-BuildCTF %})
 - [NSSCTF（sql]({% post_url 2024-09-25-NSSCTF-sql %})
 
-## crypto (4)
+## 🔐 crypto (4)
 
 - [cry（hubu]({% post_url 2024-12-16-cry-hubu %})
 - [crypto（try]({% post_url 2024-12-16-crypto-try %})
 - [crypto]({% post_url 2024-12-16-crypto %})
 - [cry]({% post_url 2024-11-01-cry %})
 
-## ai (3)
+## 🤖 ai agent (3)
 
 - [agent学习]({% post_url 2026-05-05-agent学习 %})
 - [小玩意想法]({% post_url 2026-05-03-小玩意想法 %})
 - [大模型LLM]({% post_url 2026-03-30-大模型LLM %})
 
-## reverse (3)
+## 🔍 Reverse (3)
 
 - [reverse(t]({% post_url 2024-12-16-reverse-t %})
 - [reverse（初]({% post_url 2024-12-16-reverse-初 %})
 - [初初初]({% post_url 2024-12-16-初初初 %})
 
-## Docker, Dify, 开发环境 (1)
+## 🐳 Docker/Dify (1)
 
-- ["Dify 本地部署记"]({% post_url 2026-05-16-Dify-try %})
+- [Dify 本地部署记]({% post_url 2026-05-16-Dify-try %})
 
-## Agent (1)
+## 🤖 Agent (1)
 
-- ["Claude Code 使用指南"]({% post_url 2026-05-16-claude-code-tutorial %})
+- [Claude Code 使用指南]({% post_url 2026-05-16-claude-code-tutorial %})
 
